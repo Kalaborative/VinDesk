@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import requests, json
+from os import environ
 
 app = Flask(__name__)
 
@@ -40,4 +41,7 @@ def retrieveImg():
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	# convention to run on Heroku
+	port = int(environ.get("PORT", 5000))
+	# run the app available anywhere on the network, on debug mode
+	app.run(host="0.0.0.0", port=port, debug=True)
