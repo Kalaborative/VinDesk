@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+body {
+	font-family: 'Comfortaa', cursive;
+	background: linear-gradient(to right, #928DAB, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+h1 {
+	color: #48e9f3;
+}
+
+.jumbotron {
+	margin: 2em;
+	border-radius: 1em;
+	background: linear-gradient(to right, #ffffff, #fcf9f9);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding-top: 1em;
+}
+
+.bar {
+	background-color: #04cefb;
+    position: absolute;
+    border-radius: 5px;
+    width: 90%;
+    height: 3px;
+}
+
+input {
+	padding-left: 10px;
+	border: none;
+	padding: 10px 0 10px 10px;
+	background: #0000;
+    border-radius: 0;
+    color: #48e9f3;
+    font-size: 40px;
+    width: 70%;
+    position: absolute;
+}
+
+input:focus {
+	outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #48e9f3 !important;
+}
+
+#submitBtn {
+	border-radius: 1em;
+}
+
+.wobble{
+  -webkit-animation: animationFrames linear 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-transform-origin: 50% 50%;
+}
+
+@-webkit-keyframes animationFrames {
+  0% {
+    opacity:0;
+    -webkit-transform:  translate(-20px,0px)  ;
+  }
+  50% {
+    opacity:1;
+    -webkit-transform:  translate(0px,0px)  ;
+  }
+  100% {
+    opacity:0;
+    -webkit-transform:  translate(-20px,0px)  ;
+  }
+}

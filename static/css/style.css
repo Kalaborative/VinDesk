@@ -1,0 +1,38 @@
+.banner {
+	display: block;
+	width: 1;
+	height: 5em;
+	margin: 0 auto;
+	background-color: blue;
+	text-align: center;
+	color: white;
+}
+
+h2 {
+	text-align: center;
+}
+
+body {
+	background-color: black;
+}
+
+.card {
+	margin: 1em;
+	width: 318px;
+	height: 174px;
+	flex-direction: column;
+}
+
+.card:hover {
+	opacity: 0.3;
+	transform: scale(1.1);
+}
+
+#choices {
+	background-color: #423c3c;
+	border-radius: 1em;
+}
+
+#question {
+	margin-top: 5em;
+}
