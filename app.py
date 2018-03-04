@@ -8,7 +8,7 @@ def index():
 	return render_template("index.html")
 
 
-@app.route('/checkvin', methods=["GET", "POST"])
+@app.route('/checkvin', methods=["POST"])
 def checkvin():
 	if request.method == "POST":
 		payload = {'format': 'json'}
@@ -21,7 +21,6 @@ def checkvin():
 
 		responseText = json.dumps(myDict, indent=4)
 		return jsonify({"success": "YES", "data": myDict['Results']})
-	return render_template('vin.html')
 
 
 @app.route("/retrieveImg", methods=["POST"])
