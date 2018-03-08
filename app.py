@@ -18,9 +18,8 @@ def checkvin():
 
 		response = requests.get(url, params=payload)
 
-		myDict = json.loads(response.text)
+		myDict = response.json()
 
-		responseText = json.dumps(myDict, indent=4)
 		return jsonify({"success": "YES", "data": myDict['Results']})
 
 
@@ -38,6 +37,27 @@ def retrieveImg():
 		imgLink = r['images']['value'][0]['contentUrl']
 
 		return jsonify({"src": imgLink})
+
+@app.route("/moreInfo", methods=["POST"])
+def moreInfo():
+	if request.method == "POST":
+		payload = {'format': 'json'}
+		vin = request.form['vin']
+		url = 'https://vpic.nhtsa.dot.gov/api/vehicles/decodevinextended/' + vin
+
+		response = requests.get(url, params=payload)
+
+		myDict = response.json()
+
+		filteredResults = [r for r in myDict['Results'] if r['Value']]
+		return jsonify({"success": "YES", "data": filteredResults[1:]})
+
+
+
+
+
+# We need information on accidents, mileage, service histry, number of owners, title brands, salvage, total loss, market value
+# Possible scoring mechanism
 
 
 if __name__ == "__main__":

@@ -53,6 +53,10 @@ input:-webkit-autofill:active {
 	border-radius: 1em;
 }
 
+#moreInfoDialog {
+  max-width: 100%;
+}
+
 .wobble{
   -webkit-animation: animationFrames linear 2s;
   -webkit-animation-iteration-count: infinite;

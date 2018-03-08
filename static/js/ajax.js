@@ -32,6 +32,15 @@ $(document).ready(function(){
 				return value;
 			}
 
+			function checkIfFound(value) {
+				if (!value) {
+					value = "Info Not Found";
+					return value;
+				} else {
+					return value;
+				}
+			}
+
 			var myArray = [year, model, make];
 			var foundMatch = myArray.every(allExists);
 			if (!foundMatch) {
@@ -42,10 +51,10 @@ $(document).ready(function(){
 			} else {
 				$("#results").html("⭐️ Car Found: " + resultText);
 
-				var origin = response['data'][13]['Value'];
-				var manufacturer = response['data'][6]['Value'];
-				var vehicleType = response['data'][12]['Value'];
-				var doors = response['data'][23]['Value'];
+				var origin = checkIfFound(response['data'][13]['Value']);
+				var manufacturer = checkIfFound(response['data'][6]['Value']);
+				var vehicleType = checkIfFound(response['data'][12]['Value']);
+				var doors = checkIfFound(response['data'][23]['Value']);
 
 				var t1 = '<tr><th scope="row">Made In</th><td>' + origin + '</td></tr>';
 				var t2 = '<tr><th scope="row">Manufacturer</th><td>' + manufacturer + '</td></tr>';
@@ -62,7 +71,7 @@ $(document).ready(function(){
 	});
 	$("#previewImg").click(function() {
 		$(".lds-ripple").show();
-		$('.modal-body').html('Generating...');
+		$('#imageGenerator').html('Generating...');
 		var payload = {'query': resultText};
 		$.ajax({
 			url: '/retrieveImg',
@@ -73,10 +82,27 @@ $(document).ready(function(){
 		}).done(function(response) {
 			$(".lds-ripple").hide();
 			var src = response['src'];
-			$('.modal-body').html('<img src="' + src + '" style="max-width: 100%; max-height: 100%">');
+			$('#imageGenerator').html('<img src="' + src + '" style="max-width: 100%; max-height: 100%">');
 		}).fail(function(){
 			$(".lds-ripple").hide();
-			$('.modal-body').html("Image could not be retrieved.");
+			$('#imageGenerator').html("Image could not be retrieved.");
+		});
+	});
+	$("#moreInfo").click(function() {
+		$(".lds-ripple").show();
+		$("#miscData").html('Generating...');
+		$.ajax({
+			url: '/moreInfo',
+			type: 'post',
+			data: $("#myForm").serialize()
+		}).done(function(response) {
+			$(".lds-ripple").hide();
+			var results = response['data'];
+			$("#miscData").html('');
+			for (let i = 0; i < results.length; i++) {
+				var tr = '<tr><th scope="row">' + results[i]["Variable"] + '</th><td>' + results[i]["Value"] + '</td></tr>';
+				$("#miscData").append(tr);
+			}
 		});
 	});
 });
